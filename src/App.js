@@ -16,11 +16,8 @@ function App() {
 		setState({ history: history.toString(), displayValue: output.toString() });
 	};
 
-	// ONCLICK BUTTON CLICK
 	const onClick = (id, keyType, value) => {
-		// CONVERT TO STRING
 		output = output.toString();
-		// GET LAST INPUT VALUE
 		let lastInput = output.slice(-1);
 
 		switch (keyType) {
@@ -39,21 +36,17 @@ function App() {
 	};
 	const functionKey = (id, lastInput) => {
 		const resetOutput = display => {
-			// RESET VALUES
 			history = '';
 			output = '';
-			// Update state if display == true
 			display && updateState();
 		};
 		const calculate = lastInput => {
-			// CHECK IF LAST INPUT IS NUMBER AND OUTPUT IS NOT EMPTY
 			if (!symbols.includes(lastInput) && output) {
 				try {
 					history = output;
 					output = eval(output.replace(/%/g, '*0.01'));
 					output = Number.isInteger(output) ? output : output.toFixed(3);
 					updateState();
-					// UPDATE HISTORY TO RESULT AND RESET OUTPUT
 					history = output;
 					output = '';
 				} catch (error) {
@@ -80,11 +73,9 @@ function App() {
 		}
 	};
 	const operatorKey = (value, lastInput) => {
-		// PREVENT STARTING WITH AN OPERATOR
 		if (output === '' && value !== '-') {
 			return;
 		} else {
-			// REPLACE OPERATOR SYMBOL IF LASTINPUT IS OPERATOR
 			symbols.includes(lastInput)
 				? (output = output.slice(0, -1) + value)
 				: (output += value);
@@ -92,9 +83,9 @@ function App() {
 		updateState();
 	};
 	const numberKey = (value, lastInput) => {
-		// PREVENT ENTERING . OR % MULTIPY TIMES
+	
 		if (value === '.' || value === '%') {
-			// PREVENT STARTING WITH '%'
+		
 			if (output === '' && value === '%') return;
 			lastInput === '.' || lastInput === '%' || (output += value);
 		} else {
@@ -105,4 +96,4 @@ function App() {
 
 
 
-export default App;
+//export default App;
