@@ -94,6 +94,15 @@ function App() {
 		updateState();
 	};
 
+	return (
+		<div className="app">
+			<div className="container">
+				<ResultView history={state.history} output={state.displayValue} />
+				<Keyboard onClick={onClick} />
+			</div>
+		</div>
+	);
+}
 
 
 //export default App;
